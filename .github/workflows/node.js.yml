@@ -22,9 +22,9 @@ jobs:
     - name: Frontend Compilation
       run: |
         cd client
-        find . /client "*.js" -exec node --check {} +
+        find . -name "*.js" -exec node --check {} +
 
     - name: Backend Compilation
       run: |
-        cd client 
-        find . /client "*.js" -exec node --check {} +
+        cd api 
+        find . -name "*.js" -exec node --check {} +
