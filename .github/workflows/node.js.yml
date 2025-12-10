@@ -31,9 +31,10 @@ jobs:
     
   gitleaks-scan:
     runs-on: Agent-1
+    needs: compile
     steps:
     - name: Gitleaks Setup
-      uses: gitleaks/gitleaks-actions@v2
+      uses: gitleaks/gitleaks-action@v2
     - name: Gitleaks Scan
       run: |
         gitleaks detect --source ./client --exit-code 1
@@ -41,6 +42,7 @@ jobs:
 
   trivy-fs-scan:
     runs-on: Agent-1
+    needs: gitleaks-scan
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
